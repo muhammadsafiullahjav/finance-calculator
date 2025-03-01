@@ -47,11 +47,17 @@
       color: #ff6b6b;
     }
 
+    .container {
+      padding: 0 1.5rem; /* Added left and right padding */
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
     .hero {
       text-align: center;
-      padding: 4rem 1rem;
+      padding: 4rem 0; /* Adjusted padding */
       background: #fff;
-      margin: 2rem;
+      margin: 2rem 0; /* Adjusted margin */
       border-radius: 15px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
@@ -74,9 +80,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
-      padding: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
+      padding: 2rem 0; /* Adjusted padding */
     }
 
     .calculator-card {
@@ -144,6 +148,7 @@
       font-size: 0.9rem;
     }
 
+    /* Responsive Design for Mobile */
     @media (max-width: 768px) {
       .hero h2 {
         font-size: 1.5rem;
@@ -155,6 +160,10 @@
 
       .calculator-grid {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      .container {
+        padding: 0 1rem; /* Adjusted padding for mobile */
       }
     }
   </style>
@@ -171,69 +180,76 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <section class="hero" id="home">
-    <h2>Your Ultimate Calculation Hub</h2>
-    <p>
-      Explore a wide range of calculators designed to simplify your life. From finance to health, we have the tools you need to make informed decisions.
-    </p>
-  </section>
+  <div class="container">
+    <section class="hero" id="home">
+      <h2>Your Ultimate Calculation Hub</h2>
+      <p>
+        Explore a wide range of calculators designed to simplify your life. From finance to health, we have the tools you need to make informed decisions.
+      </p>
+    </section>
 
-  <section class="calculator-grid" id="calculators">
-    <div class="calculator-card">
-      <a href="emi-tool.html" style="text-decoration: none; color: inherit;">
-        <img src="https://img.icons8.com/color/96/000000/loan.png" alt="EMI Calculator Icon">
-        <h3>EMI Calculator</h3>
-        <p>Calculate your Equated Monthly Installment for loans with ease.</p>
-        <span>Go to Calculator</span>
-      </a>
-    </div>
+    <section class="calculator-grid" id="calculators">
+      <!-- EMI Calculator Card -->
+      <div class="calculator-card">
+        <a href="emi-tool.html" style="text-decoration: none; color: inherit;">
+          <img src="https://img.icons8.com/color/96/000000/loan.png" alt="EMI Calculator Icon">
+          <h3>EMI Calculator</h3>
+          <p>Calculate your Equated Monthly Installment for loans with ease.</p>
+          <span>Go to Calculator</span>
+        </a>
+      </div>
 
-    <div class="calculator-card">
-      <a href="bmi-calculator.html" style="text-decoration: none; color: inherit;">
-        <img src="https://img.icons8.com/color/96/000000/weight.png" alt="BMI Calculator Icon">
-        <h3>BMI Calculator</h3>
-        <p>Check your Body Mass Index and maintain a healthy lifestyle.</p>
-        <span>Go to Calculator</span>
-      </a>
-    </div>
+      <!-- Investment Calculator Card -->
+      <div class="calculator-card">
+        <a href="investment-calculator.html" style="text-decoration: none; color: inherit;">
+          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135679.png" alt="Investment Calculator Icon">
+          <h3>Investment Calculator</h3>
+          <p>Calculate returns on your investments and plan your future.</p>
+          <span>Go to Calculator</span>
+        </a>
+      </div>
 
-    <div class="calculator-card">
-      <a href="currency-converter.html" style="text-decoration: none; color: inherit;">
-        <img src="https://img.icons8.com/color/96/000000/currency-exchange.png" alt="Currency Converter Icon">
-        <h3>Currency Converter</h3>
-        <p>Convert currencies in real-time with up-to-date exchange rates.</p>
-        <span>Go to Calculator</span>
-      </a>
-    </div>
+      <!-- BMI Calculator Card -->
+      <div class="calculator-card">
+        <a href="bmi-calculator.html" style="text-decoration: none; color: inherit;">
+          <img src="https://img.icons8.com/color/96/000000/weight.png" alt="BMI Calculator Icon">
+          <h3>BMI Calculator</h3>
+          <p>Check your Body Mass Index and maintain a healthy lifestyle.</p>
+          <span>Go to Calculator</span>
+        </a>
+      </div>
 
-    <div class="calculator-card">
-      <a href="mortgage-calculator.html" style="text-decoration: none; color: inherit;">
-        <img src="https://img.icons8.com/color/96/000000/home.png" alt="Mortgage Calculator Icon">
-        <h3>Mortgage Calculator</h3>
-        <p>Plan your home loan repayments with our mortgage calculator.</p>
-        <span>Go to Calculator</span>
-      </a>
-    </div>
+      <!-- Currency Converter Card -->
+      <div class="calculator-card">
+        <a href="currency-converter.html" style="text-decoration: none; color: inherit;">
+          <img src="https://img.icons8.com/color/96/000000/currency-exchange.png" alt="Currency Converter Icon">
+          <h3>Currency Converter</h3>
+          <p>Convert currencies in real-time with up-to-date exchange rates.</p>
+          <span>Go to Calculator</span>
+        </a>
+      </div>
 
-    <div class="calculator-card">
-      <a href="tax-calculator.html" style="text-decoration: none; color: inherit;">
-        <img src="https://img.icons8.com/color/96/000000/tax.png" alt="Tax Calculator Icon">
-        <h3>Tax Calculator</h3>
-        <p>Estimate your taxes and plan your finances effectively.</p>
-        <span>Go to Calculator</span>
-      </a>
-    </div>
+      <!-- Mortgage Calculator Card -->
+      <div class="calculator-card">
+        <a href="mortgage-calculator.html" style="text-decoration: none; color: inherit;">
+          <img src="https://img.icons8.com/color/96/000000/home.png" alt="Mortgage Calculator Icon">
+          <h3>Mortgage Calculator</h3>
+          <p>Plan your home loan repayments with our mortgage calculator.</p>
+          <span>Go to Calculator</span>
+        </a>
+      </div>
 
-    <div class="calculator-card">
-  <a href="investment-calculator.html" style="text-decoration: none; color: inherit;">
-    <!-- Updated Image URL -->
-    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135679.png" alt="Investment Calculator Icon">
-    <h3>Investment Calculator</h3>
-    <p>Calculate returns on your investments and plan your future.</p>
-    <span>Go to Calculator</span>
-  </a>
-</div>
-  </section>
+      <!-- Tax Calculator Card -->
+      <div class="calculator-card">
+        <a href="tax-calculator.html" style="text-decoration: none; color: inherit;">
+          <img src="https://img.icons8.com/color/96/000000/tax.png" alt="Tax Calculator Icon">
+          <h3>Tax Calculator</h3>
+          <p>Estimate your taxes and plan your finances effectively.</p>
+          <span>Go to Calculator</span>
+        </a>
+      </div>
+    </section>
+  </div>
 
   <footer>
     <p>&copy; 2023 Calculator Tools. All rights reserved.</p>
