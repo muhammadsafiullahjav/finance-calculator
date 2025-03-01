@@ -6,7 +6,157 @@
   <title>Calculator Tools - Your Ultimate Calculation Hub</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
   <style>
-    /* ... (keep the existing CSS styles unchanged) ... */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      color: #333;
+    }
+
+    header {
+      background: #4a90e2;
+      color: #fff;
+      padding: 1rem 0;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #fff;
+      padding: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #4a90e2;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ff6b6b;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem;
+      background: #fff;
+      margin: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      color: #4a90e2;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: #555;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .calculator-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .calculator-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .calculator-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .calculator-card img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1rem;
+    }
+
+    .calculator-card h3 {
+      font-size: 1.25rem;
+      color: #4a90e2;
+      margin-bottom: 0.5rem;
+    }
+
+    .calculator-card p {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .calculator-card a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .calculator-card span {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #4a90e2;
+      color: #fff;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+
+    .calculator-card span:hover {
+      background: #ff6b6b;
+    }
+
+    footer {
+      background: #4a90e2;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: 2rem;
+      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h2 {
+        font-size: 1.5rem;
+      }
+
+      .hero p {
+        font-size: 0.9rem;
+      }
+
+      .calculator-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+    }
   </style>
 </head>
 <body>
@@ -29,7 +179,6 @@
   </section>
 
   <section class="calculator-grid" id="calculators">
-    <!-- EMI Calculator Card -->
     <div class="calculator-card">
       <a href="emi-calculator.html" style="text-decoration: none; color: inherit;">
         <img src="https://img.icons8.com/color/96/000000/loan.png" alt="EMI Calculator Icon">
@@ -39,17 +188,51 @@
       </a>
     </div>
 
-    <!-- Investment Calculator Card (Fixed) -->
     <div class="calculator-card">
-      <a href="investment-calculator.html" style="text-decoration: none; color: inherit;">
-        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135679.png" alt="Investment Calculator Icon">
-        <h3>Investment Calculator</h3>
-        <p>Calculate returns on your investments and plan your future.</p>
+      <a href="bmi-calculator.html" style="text-decoration: none; color: inherit;">
+        <img src="https://img.icons8.com/color/96/000000/weight.png" alt="BMI Calculator Icon">
+        <h3>BMI Calculator</h3>
+        <p>Check your Body Mass Index and maintain a healthy lifestyle.</p>
         <span>Go to Calculator</span>
       </a>
     </div>
 
-    <!-- ... (other calculator cards remain unchanged) ... -->
+    <div class="calculator-card">
+      <a href="currency-converter.html" style="text-decoration: none; color: inherit;">
+        <img src="https://img.icons8.com/color/96/000000/currency-exchange.png" alt="Currency Converter Icon">
+        <h3>Currency Converter</h3>
+        <p>Convert currencies in real-time with up-to-date exchange rates.</p>
+        <span>Go to Calculator</span>
+      </a>
+    </div>
+
+    <div class="calculator-card">
+      <a href="mortgage-calculator.html" style="text-decoration: none; color: inherit;">
+        <img src="https://img.icons8.com/color/96/000000/home.png" alt="Mortgage Calculator Icon">
+        <h3>Mortgage Calculator</h3>
+        <p>Plan your home loan repayments with our mortgage calculator.</p>
+        <span>Go to Calculator</span>
+      </a>
+    </div>
+
+    <div class="calculator-card">
+      <a href="tax-calculator.html" style="text-decoration: none; color: inherit;">
+        <img src="https://img.icons8.com/color/96/000000/tax.png" alt="Tax Calculator Icon">
+        <h3>Tax Calculator</h3>
+        <p>Estimate your taxes and plan your finances effectively.</p>
+        <span>Go to Calculator</span>
+      </a>
+    </div>
+
+    <div class="calculator-card">
+  <a href="investment-calculator.html" style="text-decoration: none; color: inherit;">
+    <!-- Updated Image URL -->
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135679.png" alt="Investment Calculator Icon">
+    <h3>Investment Calculator</h3>
+    <p>Calculate returns on your investments and plan your future.</p>
+    <span>Go to Calculator</span>
+  </a>
+</div>
   </section>
 
   <footer>
