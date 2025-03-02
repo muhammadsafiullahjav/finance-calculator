@@ -3,10 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Calculate your Equated Monthly Installment (EMI) with our easy-to-use EMI Calculator. Supports multiple currencies, real-time updates, and interactive charts. Perfect for loan planning!">
-  <meta name="keywords" content="EMI Calculator, Loan Calculator, EMI Calculation, Loan EMI, Monthly Installment, Loan Planning, Currency Converter">
-  <meta name="author" content="EMI Calculator Team">
-  <meta name="robots" content="index, follow">
   <title>Calculator Tools - Your Ultimate Calculation Hub</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
   <style>
@@ -14,16 +10,16 @@
       font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-      color: #333;
+      background: #121212; /* Dark background */
+      color: #e0e0e0; /* Light text color */
     }
 
     header {
-      background: #4a90e2;
-      color: #fff;
+      background: #1f1f1f; /* Dark header */
+      color: #ffffff;
       padding: 1rem 0;
       text-align: center;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     }
 
     header h1 {
@@ -34,21 +30,21 @@
     nav {
       display: flex;
       justify-content: center;
-      background: #fff;
+      background: #1f1f1f; /* Dark nav */
       padding: 1rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     }
 
     nav a {
       margin: 0 1rem;
       text-decoration: none;
-      color: #4a90e2;
+      color: #4a90e2; /* Blue links */
       font-weight: 500;
       transition: color 0.3s ease;
     }
 
     nav a:hover {
-      color: #ff6b6b;
+      color: #ff6b6b; /* Red hover */
     }
 
     .container {
@@ -60,21 +56,21 @@
     .hero {
       text-align: center;
       padding: 4rem 0;
-      background: #fff;
+      background: #1f1f1f; /* Dark hero */
       margin: 2rem 0;
       border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
 
     .hero h2 {
       font-size: 2rem;
-      color: #4a90e2;
+      color: #4a90e2; /* Blue heading */
       margin-bottom: 1rem;
     }
 
     .hero p {
       font-size: 1rem;
-      color: #555;
+      color: #b0b0b0; /* Light gray text */
       max-width: 600px;
       margin: 0 auto;
       line-height: 1.6;
@@ -88,10 +84,10 @@
     }
 
     .calculator-card {
-      background: #fff;
+      background: #1f1f1f; /* Dark card */
       padding: 1.5rem;
       border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       text-align: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       display: flex;
@@ -103,7 +99,7 @@
 
     .calculator-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
     }
 
     .calculator-card img {
@@ -114,13 +110,13 @@
 
     .calculator-card h3 {
       font-size: 1.25rem;
-      color: #4a90e2;
+      color: #4a90e2; /* Blue heading */
       margin-bottom: 0.75rem;
     }
 
     .calculator-card p {
       font-size: 0.9rem;
-      color: #555;
+      color: #b0b0b0; /* Light gray text */
       line-height: 1.6;
       margin-bottom: 1.5rem;
     }
@@ -137,7 +133,7 @@
     .calculator-card span {
       display: inline-block;
       padding: 0.75rem 1.5rem;
-      background: #4a90e2;
+      background: #4a90e2; /* Blue button */
       color: #fff;
       border-radius: 8px;
       transition: background 0.3s ease;
@@ -147,21 +143,58 @@
     }
 
     .calculator-card span:hover {
-      background: #ff6b6b;
+      background: #ff6b6b; /* Red hover */
     }
 
+    /* Ad Space */
+    .ad-space {
+      text-align: center;
+      margin: 20px 0;
+      padding: 10px;
+      background-color: #1f1f1f; /* Dark ad space */
+      border: 1px solid #333;
+      border-radius: 10px;
+    }
+
+    .ad-space img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    /* Footer */
     footer {
-      background: #4a90e2;
+      background: #1f1f1f; /* Dark footer */
       color: #fff;
       text-align: center;
       padding: 1rem 0;
       margin-top: 2rem;
-      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.3);
     }
 
     footer p {
       margin: 0;
       font-size: 0.9rem;
+    }
+
+    .footer-buttons {
+      margin-top: 10px;
+    }
+
+    .footer-buttons button {
+      background-color: #4a90e2; /* Blue button */
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin: 0 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .footer-buttons button:hover {
+      background-color: #ff6b6b; /* Red hover */
+      color: #fff;
     }
 
     /* Responsive Design for Mobile */
@@ -185,6 +218,11 @@
       .calculator-card {
         min-height: 350px; /* Adjusted for mobile */
       }
+
+      .footer-buttons button {
+        padding: 0.5rem;
+        margin: 0 5px;
+      }
     }
   </style>
 </head>
@@ -207,10 +245,13 @@
         Explore a wide range of calculators designed to simplify your life. From finance to health, we have the tools you need to make informed decisions.
       </p>
     </section>
-   
-  <!-- Google AdSense Async Script -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
-    crossorigin="anonymous"></script>
+
+    <!-- Ad Space -->
+    <div class="ad-space">
+      <p>Advertisement Space</p>
+      <img src="https://via.placeholder.com/728x90" alt="Ad Banner">
+    </div>
+
     <section class="calculator-grid" id="calculators">
       <!-- EMI Calculator Card -->
       <div class="calculator-card">
@@ -276,6 +317,10 @@
 
   <footer>
     <p>&copy; 2023 Calculator Tools. All rights reserved.</p>
+    <div class="footer-buttons">
+      <button onclick="window.location.href='faqs.html'">FAQs</button>
+      <button onclick="window.location.href='privacy-policy.html'">Privacy Policy</button>
+    </div>
   </footer>
 </body>
 </html>
