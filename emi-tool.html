@@ -447,6 +447,143 @@
     currencySelect.addEventListener('change', () => {
       calculateEMI();
     });
+    // ... (keep all previous code unchanged until the updateCharts function)
+
+    function updateCharts(principal, interest, tenureMonths) {
+      if (pieChart) pieChart.destroy();
+      if (lineChart) lineChart.destroy();
+
+      // Enhanced Pie Chart
+      pieChart = new Chart(pieChartCtx, {
+        type: 'pie',
+        data: {
+          labels: ['Principal', 'Interest'],
+          datasets: [{
+            data: [principal, interest],
+            backgroundColor: ['#4a90e2', '#ff6b6b'],
+            borderWidth: 2,
+            hoverOffset: 10
+          }],
+        },
+        options: {
+          plugins: {
+            legend: {
+              labels: {
+                color: '#e0e0e0',
+                font: { size: 14 }
+              }
+            },
+            tooltip: {
+              backgroundColor: '#1f1f1f',
+              bodyColor: '#e0e0e0',
+              borderColor: '#333'
+            }
+          }
+        }
+      });
+
+      // Enhanced Line Chart with Gradient
+      const labels = Array.from({ length: tenureMonths }, (_, i) => `Month ${i + 1}`);
+      const data = [];
+      let remainingPrincipal = principal;
+      const monthlyInterestRate = parseFloat(interestRateInput.value) / 1200;
+      const monthlyPayment = (principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenureMonths)) / 
+                           (Math.pow(1 + monthlyInterestRate, tenureMonths) - 1);
+
+      for (let i = 0; i < tenureMonths; i++) {
+        const interestPaid = remainingPrincipal * monthlyInterestRate;
+        const principalPaid = monthlyPayment - interestPaid;
+        remainingPrincipal -= principalPaid;
+        data.push(remainingPrincipal);
+      }
+
+      // Create gradient fill
+      const gradient = lineChartCtx.createLinearGradient(0, 0, 0, 400);
+      gradient.addColorStop(0, 'rgba(74, 144, 226, 0.4)');
+      gradient.addColorStop(1, 'rgba(74, 144, 226, 0)');
+
+      lineChart = new Chart(lineChartCtx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Loan Balance Over Time',
+            data: data,
+            borderColor: '#4a90e2',
+            borderWidth: 3,
+            tension: 0.4,
+            pointRadius: 0,
+            pointHoverRadius: 6,
+            pointBackgroundColor: '#fff',
+            fill: true,
+            backgroundColor: gradient,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: {
+                color: '#e0e0e0',
+                font: { size: 14 }
+              }
+            },
+            tooltip: {
+              backgroundColor: '#1f1f1f',
+              titleColor: '#4a90e2',
+              bodyColor: '#e0e0e0',
+              borderColor: '#333',
+              borderWidth: 1,
+              displayColors: false,
+              callbacks: {
+                title: (context) => `Month ${context[0].dataIndex + 1}`,
+                label: (context) => {
+                  const value = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: currencySelect.value,
+                    maximumFractionDigits: 0
+                  }).format(context.parsed.y);
+                  return `Remaining Balance: ${value}`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { color: '#333', borderColor: '#333' },
+              ticks: {
+                color: '#b0b0b0',
+                maxTicksLimit: 12,
+                callback: function(value, index) {
+                  return (index + 1) % 12 === 0 ? `Year ${(index + 1)/12}` : '';
+                }
+              }
+            },
+            y: {
+              grid: { color: '#333', borderColor: '#333' },
+              ticks: {
+                color: '#b0b0b0',
+                callback: function(value) {
+                  return new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: currencySelect.value,
+                    maximumFractionDigits: 0
+                  }).format(value);
+                }
+              },
+              beginAtZero: true
+            }
+          },
+          animation: {
+            duration: 2000,
+            easing: 'easeOutQuart'
+          }
+        }
+      });
+    }
+
+    // ... (keep the rest of the code unchanged)
   </script>
 </body>
 </html>
