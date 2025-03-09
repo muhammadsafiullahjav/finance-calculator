@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Advanced Mortgage Calculator with interactive charts and amortization schedule. Calculate monthly payments, interest costs, and payment breakdown.">
+    <meta name="keywords" content="Mortgage Calculator, Home Loan Calculator, Mortgage Payment Calculator, Amortization Schedule">
+    <meta name="author" content="Mortgage Calculator Team">
+    <title>Mortgage Calculator with Charts & Amortization Schedule</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #121212;
+            margin: 0;
+            padding: 0;
+            color: #e0e0e0;
+        }
+
+        header {
+            background: #1f1f1f;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #1f1f1f;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        nav a {
+            margin: 0 1rem;
+            text-decoration: none;
+            color: #4a90e2;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ff6b6b;
+        }
+
+        .calculator-container {
+            background: #1f1f1f;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #4a90e2;
+            font-weight: 500;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #333;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #333;
+            color: #e0e0e0;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: #4a90e2;
+            outline: none;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            background: #4a90e2;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .results {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #2d2d2d;
+            border-radius: 10px;
+        }
+
+        .flex-container {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .chart-container {
+            flex: 1;
+            min-width: 400px;
+            background: #2d2d2d;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background: #2d2d2d;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: right;
+            border-bottom: 1px solid #3d3d3d;
+        }
+
+        th {
+            background: #1f1f1f;
+            color: #4a90e2;
+        }
+
+        .color-description {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #1f1f1f;
+            border-radius: 8px;
+        }
+
+        .color-box {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+
+        footer {
+            background: #1f1f1f;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-container {
+                padding: 1rem;
+            }
+            
+            .flex-container {
+                flex-direction: column;
+            }
+            
+            .chart-container {
+                min-width: unset;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mortgage Calculator</h1>
+        <nav>
+            <a href="#calculator">Calculator</a>
+            <a href="#charts">Charts</a>
+            <a href="#schedule">Schedule</a>
+            <a href="#about">About</a>
+        </nav>
+    </header>
+
+    <div class="calculator-container">
+        <div class="input-group">
+            <label>Home Price ($)</label>
+            <input type="number" id="homePrice" value="400000">
+        </div>
+
+        <div class="input-group">
+            <label>Down Payment (%)</label>
+            <input type="number" id="downPaymentPct" value="20" step="0.1">
+        </div>
+
+        <div class="input-group">
+            <label>Loan Term (years)</label>
+            <input type="number" id="loanTerm" value="30">
+        </div>
+
+        <div class="input-group">
+            <label>Interest Rate (%)</label>
+            <input type="number" id="interestRate" value="6.56" step="0.01">
+        </div>
+
+        <h3>Additional Costs</h3>
+        <div class="input-group">
+            <label>Property Tax (%)</label>
+            <input type="number" id="propertyTax" value="1.2" step="0.1">
+        </div>
+
+        <div class="input-group">
+            <label>Home Insurance ($/year)</label>
+            <input type="number" id="homeInsurance" value="1500">
+        </div>
+
+        <div class="input-group">
+            <label>Other Costs ($/year)</label>
+            <input type="number" id="otherCosts" value="4000">
+        </div>
+
+        <button onclick="calculate()">Calculate</button>
+
+        <div class="results">
+            <h2>Monthly Payment: $<span id="monthlyPayment">0.00</span></h2>
+            
+            <div class="flex-container">
+                <div>
+                    <p>Principal & Interest: $<span id="principalInterest">0.00</span></p>
+                    <p>Property Tax: $<span id="monthlyTax">0.00</span></p>
+                    <p>Home Insurance: $<span id="monthlyInsurance">0.00</span></p>
+                    <p>Other Costs: $<span id="monthlyOther">0.00</span></p>
+                </div>
+                <div>
+                    <p>Total Mortgage Payments: $<span id="totalMortgage">0.00</span></p>
+                    <p>Total Interest Paid: $<span id="totalInterest">0.00</span></p>
+                    <p>Payoff Date: <span id="payoffDate">-</span></p>
+                </div>
+            </div>
+
+            <div class="flex-container">
+                <div class="chart-container">
+                    <div class="color-description">
+                        <div><span class="color-box" style="background: #4e79a7"></span>Principal & Interest</div>
+                        <div><span class="color-box" style="background: #f28e2c"></span>Property Tax</div>
+                        <div><span class="color-box" style="background: #e15759"></span>Home Insurance</div>
+                        <div><span class="color-box" style="background: #76b7b2"></span>Other Costs</div>
+                    </div>
+                    <canvas id="pieChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="color-description">
+                        <span class="color-box" style="background: #59a14f"></span>Remaining Balance
+                    </div>
+                    <canvas id="lineChart"></canvas>
+                </div>
+            </div>
+
+            <h3>Amortization Schedule</h3>
+            <table id="schedule">
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Starting Balance</th>
+                        <th>Interest Paid</th>
+                        <th>Principal Paid</th>
+                        <th>Ending Balance</th>
+                    </tr>
+                </thead>
+                <tbody id="scheduleBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Mortgage Calculator. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let pieChart, lineChart;
+
+        function calculateAmortization(loanAmount, monthlyRate, monthlyPayment, years) {
+            let balance = loanAmount;
+            const schedule = [];
+            
+            for(let year = 1; year <= years; year++) {
+                let yearlyInterest = 0;
+                let yearlyPrincipal = 0;
+                const startBalance = balance;
+                
+                for(let month = 1; month <= 12; month++) {
+                    const interest = balance * monthlyRate;
+                    const principal = monthlyPayment - interest;
+                    
+                    yearlyInterest += interest;
+                    yearlyPrincipal += principal;
+                    balance -= principal;
+                }
+                
+                schedule.push({
+                    year: year,
+                    startBalance: startBalance,
+                    interest: yearlyInterest,
+                    principal: yearlyPrincipal,
+                    endBalance: balance
+                });
+            }
+            return schedule;
+        }
+
+        function updateCharts(mortgagePayment, monthlyTax, monthlyInsurance, monthlyOther, schedule) {
+            if(pieChart) pieChart.destroy();
+            if(lineChart) lineChart.destroy();
+
+            // Pie Chart
+            const pieCtx = document.getElementById('pieChart').getContext('2d');
+            pieChart = new Chart(pieCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Principal & Interest', 'Property Tax', 'Home Insurance', 'Other Costs'],
+                    datasets: [{
+                        data: [mortgagePayment, monthlyTax, monthlyInsurance, monthlyOther],
+                        backgroundColor: ['#4e79a7', '#f28e2c', '#e15759', '#76b7b2'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            labels: { color: '#e0e0e0' }
+                        }
+                    }
+                }
+            });
+
+            // Line Chart
+            const lineCtx = document.getElementById('lineChart').getContext('2d');
+            lineChart = new Chart(lineCtx, {
+                type: 'line',
+                data: {
+                    labels: schedule.map((_, i) => i + 1),
+                    datasets: [{
+                        label: 'Remaining Balance',
+                        data: schedule.map(y => y.endBalance),
+                        borderColor: '#59a14f',
+                        tension: 0.3,
+                        borderWidth: 2,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            ticks: { color: '#e0e0e0' },
+                            grid: { color: '#3d3d3d' }
+                        },
+                        x: {
+                            ticks: { color: '#e0e0e0' },
+                            grid: { color: '#3d3d3d' }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: { color: '#e0e0e0' }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateSchedule(schedule) {
+            const tbody = document.getElementById('scheduleBody');
+            tbody.innerHTML = '';
+            
+            schedule.forEach(y => {
+                const row = `<tr>
+                    <td>${y.year}</td>
+                    <td>$${y.startBalance.toFixed(2)}</td>
+                    <td>$${y.interest.toFixed(2)}</td>
+                    <td>$${y.principal.toFixed(2)}</td>
+                    <td>$${y.endBalance.toFixed(2)}</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function calculate() {
+            const homePrice = parseFloat(document.getElementById('homePrice').value);
+            const downPaymentPct = parseFloat(document.getElementById('downPaymentPct').value) / 100;
+            const loanTerm = parseFloat(document.getElementById('loanTerm').value);
+            const annualRate = parseFloat(document.getElementById('interestRate').value) / 100;
+            const propertyTaxRate = parseFloat(document.getElementById('propertyTax').value) / 100;
+            const homeInsurance = parseFloat(document.getElementById('homeInsurance').value);
+            const otherCosts = parseFloat(document.getElementById('otherCosts').value);
+
+            const downPayment = homePrice * downPaymentPct;
+            const loanAmount = homePrice - downPayment;
+            const monthlyRate = annualRate / 12;
+            const payments = loanTerm * 12;
+
+            const mortgagePayment = loanAmount * 
+                (monthlyRate * Math.pow(1 + monthlyRate, payments)) / 
+                (Math.pow(1 + monthlyRate, payments) - 1);
+
+            const monthlyTax = (homePrice * propertyTaxRate) / 12;
+            const monthlyInsurance = homeInsurance / 12;
+            const monthlyOther = otherCosts / 12;
+            const totalMonthly = mortgagePayment + monthlyTax + monthlyInsurance + monthlyOther;
+            const totalMortgage = mortgagePayment * payments;
+            const totalInterest = totalMortgage - loanAmount;
+
+            document.getElementById('monthlyPayment').textContent = totalMonthly.toFixed(2);
+            document.getElementById('principalInterest').textContent = mortgagePayment.toFixed(2);
+            document.getElementById('monthlyTax').textContent = monthlyTax.toFixed(2);
+            document.getElementById('monthlyInsurance').textContent = monthlyInsurance.toFixed(2);
+            document.getElementById('monthlyOther').textContent = monthlyOther.toFixed(2);
+            document.getElementById('totalMortgage').textContent = totalMortgage.toFixed(2);
+            document.getElementById('totalInterest').textContent = totalInterest.toFixed(2);
+
+            const payoffDate = new Date();
+            payoffDate.setFullYear(payoffDate.getFullYear() + loanTerm);
+            document.getElementById('payoffDate').textContent = payoffDate.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short' 
+            });
+
+            const schedule = calculateAmortization(loanAmount, monthlyRate, mortgagePayment, loanTerm);
+            updateCharts(mortgagePayment, monthlyTax, monthlyInsurance, monthlyOther, schedule);
+            updateSchedule(schedule);
+        }
+
+        calculate();
+    </script>
+</body>
+</html>
